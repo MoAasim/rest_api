@@ -86,6 +86,11 @@ class ProductUpdateAPIView(generics.UpdateAPIView):
     serializer_class = ProductSerializer
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
 
+    # If we are sending token but authentication_classes are not specified, then it will
+    # result in authentication failed.
+    authentication_classes = [authentication.TokenAuthentication,
+    authentication.SessionAuthentication]
+
     def perform_update(self, serializer):
         name = serializer.validated_data.get('name')
         description = serializer.validated_data.get('description')
@@ -101,6 +106,7 @@ class ProductDestroyAPIView(generics.DestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
+    authentication_classes = [authentication.TokenAuthentication]
 
 
 product_destroy_view = ProductDestroyAPIView.as_view()

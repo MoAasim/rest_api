@@ -38,6 +38,7 @@ class ProductListCreateAPIView(generics.ListCreateAPIView):
 
     # We can override this method of CreateListAPIView
     # Though these are not required.
+    # get() is coming from ListAPIView/CreateListAPIView
     # def get(self, request, *args, **kwargs):
     #     print("======= Executing GET method ... ")
     #     instance = Product.objects.all().filter(user=request.user)
@@ -47,6 +48,7 @@ class ProductListCreateAPIView(generics.ListCreateAPIView):
     #         # Use many=True to indicate that multiple objects are being serialized
     #     return Response(data)
     
+    # post() is coming from CreateAPIView/CreateListAPIView
     # def post(self, request, *args, **kwargs):
     #     #return super().post(request, *args, **kwargs)
     #     print("========= POST ==============")
